@@ -1,16 +1,14 @@
 import logging
 from pymodbus.exceptions import ModbusIOException
-import tcp_async
 
 _logger = logging.getLogger()
 _logger.setLevel("DEBUG")
 
 
-async def read_holding_register(address: int, quantity: int, slaveID: int):
+async def read_holding_register(client, address: int, quantity: int, slaveID: int):
     host = "127.0.0.1"
     port = 5020
     try:
-        client = tcp_async.setup_async_client(host, port)
         _logger.info("### Client starting")
         await client.connect()
         assert client.connected
@@ -28,6 +26,4 @@ async def read_holding_register(address: int, quantity: int, slaveID: int):
                     f"### 读取的值 - IP: {host}, 端口: {port}, 地址: {address},数量: {quantity} 值: {values}"
                 )
     except ModbusIOException as e:
-        _logger.error(
-            f"通信错误 - IP: {client.host}, 端口: {client.port}, 地址: {address}, 错误信息: {e}"
-        )
+        print(f"通信错误 - IP: {host}, 端口: {port}, 地址: {address}, 错误信息: {e}")
