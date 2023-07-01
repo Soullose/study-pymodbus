@@ -5,6 +5,7 @@ _logger = logging.getLogger()
 _logger.setLevel("DEBUG")
 
 
+# holding_register 模式
 async def read_holding_register(client, address: int, quantity: int, slaveID: int):
     host = "127.0.0.1"
     port = 5020
