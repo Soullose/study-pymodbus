@@ -1,4 +1,5 @@
 import logging
+import time
 from pymodbus.exceptions import ModbusIOException
 
 _logger = logging.getLogger()
@@ -26,5 +27,6 @@ async def read_holding_register(client, address: int, quantity: int, slaveID: in
                 print(
                     f"### 读取的值 - IP: {host}, 端口: {port}, 地址: {address},数量: {quantity} 值: {values}"
                 )
+            time.sleep(2)
     except ModbusIOException as e:
         print(f"通信错误 - IP: {host}, 端口: {port}, 地址: {address}, 错误信息: {e}")
