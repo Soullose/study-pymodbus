@@ -6,7 +6,7 @@ _logger = logging.getLogger()
 _logger.setLevel("DEBUG")
 
 
-# holding_register 模式
+# holding_register model
 async def read_holding_register(client, address: int, quantity: int, slaveID: int):
     host = "127.0.0.1"
     port = 5020
@@ -20,13 +20,15 @@ async def read_holding_register(client, address: int, quantity: int, slaveID: in
             )
             if response.isError():
                 print(
-                    f"### 读取错误 - IP: {host}, 端口: {port}, 地址: {address}, 错误信息: {response}"
+                    f"### read error - IP: {host}, port: {port}, address: {address}, errorMessage: {response}"
                 )
             else:
                 values = response.registers
                 print(
-                    f"### 读取的值 - IP: {host}, 端口: {port}, 地址: {address},数量: {quantity} 值: {values}"
+                    f"### read values - IP: {host}, port: {port}, address: {address},quantity: {quantity} value: {values}"
                 )
             time.sleep(2)
     except ModbusIOException as e:
-        print(f"通信错误 - IP: {host}, 端口: {port}, 地址: {address}, 错误信息: {e}")
+        print(
+            f"communication error  - IP: {host}, 端口: {port}, address: {address}, errorMessage: {e}"
+        )

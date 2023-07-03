@@ -13,5 +13,5 @@ def setup_sync_client(host, port):
 
 
 def close_modbus_client(client):
-    # 关闭Modbus连接
+    # close Modbus client
     client.close()
