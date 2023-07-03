@@ -21,7 +21,7 @@ data_block = None  # 全局变量，用于存储数据块
 
 def start_sample_modbus_simulator():
     # Define the Modbus registers
-    coils = ModbusSequentialDataBlock(1, [False] * 100)
+    coils = ModbusSequentialDataBlock(1, [True] * 100)
     discrete_inputs = ModbusSequentialDataBlock(1, [False] * 100)
     # 创建数据块，用于存储寄存器的值
     holding_registers = ModbusSequentialDataBlock(1, [0] * 100)
